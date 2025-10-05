@@ -386,9 +386,9 @@ function set(key, value, stringify = JSON.stringify) {
   } catch {
   }
 }
-const base = ((_a = globalThis.__sveltekit_llp9v9) == null ? void 0 : _a.base) ?? "/remake-gallery";
-const assets = ((_b = globalThis.__sveltekit_llp9v9) == null ? void 0 : _b.assets) ?? base ?? "";
-const version = "1759647789191";
+const base = ((_a = globalThis.__sveltekit_u3vbq5) == null ? void 0 : _a.base) ?? "/remake-gallery";
+const assets = ((_b = globalThis.__sveltekit_u3vbq5) == null ? void 0 : _b.assets) ?? base ?? "";
+const version = "1759647972139";
 const SNAPSHOT_KEY = "sveltekit:snapshot";
 const SCROLL_KEY = "sveltekit:scroll";
 const STATES_KEY = "sveltekit:states";
@@ -1018,8 +1018,8 @@ const preload_tokens = /* @__PURE__ */ new Set();
 const query_map = /* @__PURE__ */ new Map();
 async function start(_app, _target, hydrate) {
   var _a2, _b2, _c2, _d2, _e2;
-  if ((_a2 = globalThis.__sveltekit_llp9v9) == null ? void 0 : _a2.data) {
-    globalThis.__sveltekit_llp9v9.data;
+  if ((_a2 = globalThis.__sveltekit_u3vbq5) == null ? void 0 : _a2.data) {
+    globalThis.__sveltekit_u3vbq5.data;
   }
   if (document.URL !== location.href) {
     location.href = location.href;
@@ -2559,4 +2559,4 @@ export {
   page as p,
   stores as s
 };
-//# sourceMappingURL=Db9BnPuS.js.map
+//# sourceMappingURL=DFAnGCro.js.map
