@@ -8,9 +8,10 @@
 
     let {original, reproduction, alt}: Props = $props();
 
+    let mode = $state<'side-by-side' | 'comparison'>('side-by-side');
     let sliderPosition = $state(50);
     let isDragging = $state(false);
-    let container: HTMLDivElement;
+    let container = $state<HTMLButtonElement>();
 
     function handleMove(clientX: number) {
         if (!container) return;
@@ -51,6 +52,10 @@
             sliderPosition = Math.min(100, sliderPosition + 5);
         }
     }
+
+    function toggleMode() {
+        mode = mode === 'side-by-side' ? 'comparison' : 'side-by-side';
+    }
 </script>
 
 <svelte:window
@@ -59,18 +64,58 @@
     ontouchend={handleMouseUp}
 />
 
-<div
-    bind:this={container}
-  class="relative w-full max-h-screen overflow-hidden cursor-col-resize select-none"
-    onmousedown={handleMouseDown}
-    ontouchstart={handleMouseDown}
-    ontouchmove={handleTouchMove}
-    onclick={handleClick}
-    onkeydown={handleKeyDown}
-    role="application"
-    aria-label="{alt} - interactive comparison slider"
-    tabindex="0"
->
+<!-- Mode Toggle Button -->
+<div class="mb-4 flex justify-center">
+    <button
+        onclick={toggleMode}
+        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm font-medium transition-colors"
+        aria-label="Toggle between side-by-side and comparison view"
+    >
+        {mode === 'side-by-side' ? 'Switch to Comparison' : 'Switch to Side-by-Side'}
+    </button>
+</div>
+
+{#if mode === 'side-by-side'}
+    <!-- Side-by-Side Mode -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-screen">
+        <div class="relative">
+            <img
+                src={original}
+                alt="{alt} - original"
+                class="w-full h-auto max-h-screen object-contain"
+            />
+            <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+                Original
+            </div>
+        </div>
+        <div class="relative">
+            <img
+                src={reproduction}
+                alt="{alt} - reproduction"
+                class="w-full h-auto max-h-screen object-contain"
+            />
+            <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+                Reproduction
+            </div>
+        </div>
+    </div>
+{:else}
+    <!-- Comparison Mode -->
+    <button
+        bind:this={container}
+        class="relative w-full max-h-screen overflow-hidden cursor-col-resize select-none block"
+        onmousedown={handleMouseDown}
+        ontouchstart={handleMouseDown}
+        ontouchmove={handleTouchMove}
+        onclick={handleClick}
+        onkeydown={handleKeyDown}
+        role="slider"
+        aria-label="{alt} - interactive comparison slider"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow={sliderPosition}
+        type="button"
+    >
     <!-- Reproduction (bottom layer) -->
     <img
         src={reproduction}
@@ -107,11 +152,12 @@
         </div>
     </div>
 
-    <!-- Labels -->
-    <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
-        Original
-    </div>
-    <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
-        Reproduction
-    </div>
-</div>
+        <!-- Labels -->
+        <div class="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+            Original
+        </div>
+        <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm">
+            Reproduction
+        </div>
+    </button>
+{/if}
