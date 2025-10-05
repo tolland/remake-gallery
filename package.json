@@ -15,7 +15,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "pnpm clean && NODE_ENV=production pnpm build && npx gh-pages -d build --dotfiles"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^6.0.1",
@@ -59,6 +60,7 @@
     "@smui/tab-bar": "link:/home/tomhodder/git/svelte-material-ui/packages/tab-bar",
     "bits-ui": "^2.6.0",
     "clsx": "^2.1.1",
+    "lucide-svelte": "^0.544.0",
     "prettier": "^3.5.3",
     "prettier-plugin-svelte": "^3.4.0",
     "tailwind-merge": "^3.3.1"

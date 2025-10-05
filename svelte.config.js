@@ -12,6 +12,7 @@ const config = {
             extensions: ['.md', '.svx'],
         })
     ],
+    base: '/remake-gallery/',
 
     kit: {
         adapter: adapter({
@@ -19,6 +20,7 @@ const config = {
             assets: 'build',
             fallback: 'app.html',
             precompress: false,
+            strict: true
         }),
         alias: {
             $assets: './src/lib/assets',
@@ -26,6 +28,9 @@ const config = {
             $helpers: './src/lib/helpers',
             $lib: './src/lib',
         },
+        paths: {
+            base: process.env.NODE_ENV === 'production' ? '/remake-gallery' : ''
+        }
     },
 }
 
