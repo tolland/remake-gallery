@@ -1,0 +1,1 @@
+{"version":3,"file":"0.BMAbPQrc.js","sources":["../../../../../../src/routes/+layout.svelte"],"sourcesContent":["<script>\n  let { children } = $props();\n  import \"../css/style.css\";\n</script>\n\n<!--<nav>-->\n<!--  <a href=\"/\">default</a>-->\n<!--  <a href=\"/sidebar\">sidebar</a>-->\n<!--</nav>-->\n\n{@render children()}\n"],"names":[],"mappings":";;;oCAAA;;;;;AAGA;"}
