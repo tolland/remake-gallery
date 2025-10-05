@@ -1,6 +1,3 @@
-# remake-gallery
-A sveltekit portfolio site for showing reproductions of various works
-
 # Remake Gallery
 
 **Remake Gallery** is a personal portfolio of visual reproductions — a curated collection of artworks, designs, and creative experiments that I’ve recreated by hand or in code.
